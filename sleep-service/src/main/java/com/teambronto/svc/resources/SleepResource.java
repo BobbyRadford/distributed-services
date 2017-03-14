@@ -40,7 +40,11 @@ public class SleepResource {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-        span.flush();
+        span.annotate("test.works");
+        
+        span.name("test.name");
+        span.finish();
+       
         return null;
     }
 }

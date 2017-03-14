@@ -15,6 +15,8 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
+
+import java.math.BigInteger;
 import java.util.Random;
 
 @Path("/number-gen-svc")
@@ -34,7 +36,7 @@ public class NumberGenResource {
                 .build();
     }
 
-
+    
     /**
      * Sends a request to /sleep-svc with an employee's ID and expects the data for that employee to be returned.
      * @param id The employee's ID. This is optional. If not defined, a random value between 1 and 30 will be chosen.
@@ -56,7 +58,31 @@ public class NumberGenResource {
                 .get(String.class);
 
         span.finish();
-        employee = employee + "\n Trace ID = " + span.context().traceId() + "\n Span ID = " + span.context().spanId();
+        //grab the traceID
+        Long traceID = span.context().traceId();
+        //if the traceID is not negative, that means the trace did not produce an ID that is larger than LONG.MAX_VALUE
+        if(traceID > 0){
+        	String hex = Long.toHexString(traceID);
+        	employee = employee + "\nConverted hex = " + hex;
+        //otherwise we need to use BigInteger to be able to fit the entire traceID, and convert this traceID to hex
+        //this cannot be the most efficient way to do this
+        } else if (traceID < 0){
+        	String traceIDString = Long.toString(traceID);
+        	BigInteger b = new BigInteger(traceIDString);
+        	Long difference = (Math.abs(Long.MIN_VALUE) - Math.abs(traceID)) + 1;
+        	BigInteger maxLong = new BigInteger(Long.toString(Long.MAX_VALUE));
+        	BigInteger diff = new BigInteger(Long.toString(difference));
+        	b = maxLong.add(diff);
+//        	BigInteger toHex = new BigInteger(b.toString(), 16);
+        	employee = employee + "\nConverted TraceID = " + b.toString(16);
+        	
+        	
+        } else {
+        	//shouldn't ever reach this
+        	String convertedID = "Something went wrong. Ignore anything added to this end of this message.";
+        	employee = employee + convertedID;
+        }
+        employee = employee + "\n Original Trace ID = " + span.context().traceId() + "\n Original Span ID = " + span.context().spanId();
         return employee;
     }
 }
