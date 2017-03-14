@@ -65,10 +65,9 @@ public class NumberGenResource {
         	String hex = Long.toHexString(traceID);
         	employee = employee + "\nConverted hex = " + hex;
         //otherwise we need to use BigInteger to be able to fit the entire traceID, and convert this traceID to hex
-        //this cannot be the most efficient way to do this
+        //this only works if the traceID is not FFFFFFFFFFFFFFFF
         } else if (traceID < 0){
-        	String traceIDString = Long.toString(traceID);
-        	BigInteger b = new BigInteger(traceIDString);
+        	BigInteger b = new BigInteger(Long.toString(traceID));
         	Long difference = (Math.abs(Long.MIN_VALUE) - Math.abs(traceID)) + 1;
         	BigInteger maxLong = new BigInteger(Long.toString(Long.MAX_VALUE));
         	BigInteger diff = new BigInteger(Long.toString(difference));
