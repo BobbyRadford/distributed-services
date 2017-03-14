@@ -32,8 +32,15 @@ public class SleepResource {
     public String getEmployeeData(@QueryParam("id")      int id,
                                   @QueryParam("traceId") long traceId,
                                   @QueryParam("spanId")  long spanId) {
-        Span span = tracer.joinSpan(TraceContext.newBuilder().traceId(traceId).spanId(spanId).build());
-
+//        Span span = tracer.joinSpan(TraceContext.newBuilder().traceId(traceId).spanId(spanId).build());
+    	Span span = tracer.newChild(TraceContext.newBuilder().traceId(traceId).spanId(spanId).build());
+        span.start();
+        try {
+			Thread.sleep(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+        span.flush();
         return null;
     }
 }

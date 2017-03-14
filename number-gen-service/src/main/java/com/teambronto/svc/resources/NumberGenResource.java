@@ -47,7 +47,7 @@ public class NumberGenResource {
         // TODO: look here https://github.com/openzipkin/brave/blob/master/brave/README.md
         
         span.start();
-
+        
         String employee = ClientBuilder.newClient().target("http://localhost:8889/sleep-svc")
                 .queryParam("id", id.or(new Random().nextInt(29) + 1))
                 .queryParam("traceId", span.context().traceId())

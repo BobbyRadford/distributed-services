@@ -1,4 +1,4 @@
-zipkinLocation: http://sd-vm23.csc.ncsu.edu
+#zipkinLocation: http://sd-vm23.csc.ncsu.edu
 zipkinReportingAddress: http://sd-vm23.csc.ncsu.edu:9411/api/v1/spans
 
 server:
