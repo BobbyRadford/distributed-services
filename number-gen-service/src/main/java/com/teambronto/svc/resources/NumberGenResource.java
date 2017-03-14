@@ -45,7 +45,7 @@ public class NumberGenResource {
         // Start a new Brave Trace.
         Span span = tracer.newTrace().name("getEmployeeData").kind(Span.Kind.CLIENT);
         // TODO: look here https://github.com/openzipkin/brave/blob/master/brave/README.md
-
+        
         span.start();
 
         String employee = ClientBuilder.newClient().target("http://localhost:8889/sleep-svc")
