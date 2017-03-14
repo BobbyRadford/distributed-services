@@ -56,6 +56,7 @@ public class NumberGenResource {
                 .get(String.class);
 
         span.finish();
+        employee = employee + "\n Trace ID = " + span.context().traceId() + "\n Span ID = " + span.context().spanId();
         return employee;
     }
 }
