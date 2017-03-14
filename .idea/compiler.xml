@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="number-gen-service" />
+        <module name="NumberGenService" />
+        <module name="sleep-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="distributed-services" target="1.8" />
+      <module name="distributedservices" target="1.5" />
+      <module name="hbase-service" target="1.8" />
+      <module name="HBaseService" target="1.5" />
+      <module name="number-gen-service" target="1.8" />
+      <module name="NumberGenService" target="1.5" />
+      <module name="sleep-service" target="1.8" />
+      <module name="SleepService" target="1.5" />
+      <module name="TestService" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
