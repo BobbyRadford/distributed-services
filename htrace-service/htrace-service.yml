@@ -1,0 +1,41 @@
+# Zipkin-specific options.
+#zipkin:
+#
+#  enabled: true
+#  collector: http
+#  baseUrl: http://sd-vm23.csc.ncsu.edu:9411/
+#  # serviceHost has to be an IP address. Cannot be unresolved name.
+#  serviceHost: 152.14.106.33
+#  servicePort: 8890
+
+#zipkinClient:
+#  serviceName: number-gen-svc
+#  timeout: 60s
+#  connectionTimeout: 60s
+
+zipkinReportingAddress: http://sd-vm23.csc.ncsu.edu:9411/api/v1/spans
+
+server:
+
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 8890
+
+  requestLog:
+    appenders:
+      - type: console
+        timeZone: UTC
+        target: stdout
+
+logging:
+  level: INFO
+  loggers:
+    com.smoketurner.dropwizard.zipkin: DEBUG
+    com.github.kristofa.brave: DEBUG
+  appenders:
+    - type: console
+      timeZone: UTC
+      target: stdout
