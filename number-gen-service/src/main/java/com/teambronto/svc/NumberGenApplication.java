@@ -26,5 +26,6 @@ public class NumberGenApplication extends Application<NumberGenConfiguration> {
     public void run(NumberGenConfiguration config, Environment environment) throws Exception {
         // Register the NumberGenResource to the environment.
         environment.jersey().register(new NumberGenResource(config.getOkHttpSender()));
+        environment.jersey().register(ZipkinRequestFilter.class);
     }
 }

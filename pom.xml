@@ -8,6 +8,7 @@
     <modules>
         <module>number-gen-service</module>
         <module>sleep-service</module>
+        <module>htrace-service</module>
     </modules>
     <packaging>pom</packaging>
 
