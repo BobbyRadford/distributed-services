@@ -4,7 +4,7 @@ import io.dropwizard.setup.Environment;
 import resources.HTraceServiceResource;
 
 public class HTraceServiceApplication extends Application<HTraceServiceConfiguration> {
-	
+//implement something like this.
 //	public class MyApplication extends ResourceConfig {
 //
 //	    public MyApplication() {
