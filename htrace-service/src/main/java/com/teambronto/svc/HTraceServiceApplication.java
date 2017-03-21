@@ -1,9 +1,9 @@
-import javax.ws.rs.client.WebTarget;
+package com.teambronto.svc;
 
-import filters.TracingContainerRequestFilter;
+import com.teambronto.svc.filters.TracingContainerRequestFilter;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
-import resources.HTraceServiceResource;
+import com.teambronto.svc.resources.HTraceServiceResource;
 
 public class HTraceServiceApplication extends Application<HTraceServiceConfiguration> {
 

@@ -1,4 +1,4 @@
-package resources;
+package com.teambronto.svc.resources;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;

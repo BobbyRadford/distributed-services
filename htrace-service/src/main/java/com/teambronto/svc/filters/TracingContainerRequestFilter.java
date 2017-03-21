@@ -1,4 +1,4 @@
-package filters;
+package com.teambronto.svc.filters;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
