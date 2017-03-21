@@ -1,5 +1,7 @@
 package com.teambronto.svc;
 
+import com.teambronto.svc.filters.TracingClientRequestFilter;
+import com.teambronto.svc.filters.TracingContainerRequestFitler;
 import com.teambronto.svc.resources.SleepResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
@@ -25,5 +27,7 @@ public class SleepApplication extends Application<SleepConfiguration> {
     public void run(SleepConfiguration config, Environment environment) throws Exception {
         // Register the NumberGenResource to the environment.
         environment.jersey().register(new SleepResource(config.getOkHttpSender()));
+        environment.jersey().register(TracingClientRequestFilter.class);
+        environment.jersey().register(TracingContainerRequestFitler.class);
     }
 }
