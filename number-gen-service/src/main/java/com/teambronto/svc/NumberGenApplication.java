@@ -2,6 +2,8 @@ package com.teambronto.svc;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
+
+import com.teambronto.svc.filters.TracingClientRequestFilter;
 import com.teambronto.svc.resources.NumberGenResource;
 import zipkin.reporter.okhttp3.OkHttpSender;
 
@@ -26,6 +28,6 @@ public class NumberGenApplication extends Application<NumberGenConfiguration> {
     public void run(NumberGenConfiguration config, Environment environment) throws Exception {
         // Register the NumberGenResource to the environment.
         environment.jersey().register(new NumberGenResource(config.getOkHttpSender()));
-//        environment.jersey().register(ZipkinRequestFilter.class);
+        environment.jersey().register(new TracingClientRequestFilter());
     }
 }
