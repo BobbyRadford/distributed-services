@@ -1,7 +1,6 @@
 import javax.ws.rs.client.WebTarget;
 
-import filters.TracingRequestFilter;
-import filters.TracingWebTargetFactory;
+import filters.TracingContainerRequestFilter;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 import resources.HTraceServiceResource;
@@ -19,9 +18,6 @@ public class HTraceServiceApplication extends Application<HTraceServiceConfigura
     @Override
     public void run(HTraceServiceConfiguration hTraceServiceConfiguration, Environment environment) throws Exception {
         environment.jersey().register(new HTraceServiceResource());
-        environment.jersey().register(TracingRequestFilter.class);
-        
-        bindFactory(TracingWebTargetFactory.class).to(WebTarget.class);
-
+        environment.jersey().register(TracingContainerRequestFilter.class);
     }
 }

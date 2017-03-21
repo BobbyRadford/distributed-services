@@ -1,8 +1,10 @@
 package resources;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.ws.spi.http.HttpContext;
 
 import org.apache.htrace.Tracer;
 
@@ -15,8 +17,8 @@ public class HTraceServiceResource {
 	
 	
     @GET
-    public Response getEmployeeDataById(@QueryParam("id") long id) {
-    	
+    public Response getEmployeeDataById(@Context HttpContext ctx, @QueryParam("id") long id) {
+        ctx.getAttribute("HTRACE");
         return null;
     }
 }
